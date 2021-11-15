@@ -24,7 +24,7 @@ public final class SimpleCommands extends JavaPlugin {
     private static final Map<String, String> phrases = new HashMap<>();
     public static String prefix = "&7[&bSCMD&7] &7";
     public static String console_prefix = "[SCMD]";
-    private static final int SPIGOT_RESOURCE_ID = 12345;
+    private static final int SPIGOT_RESOURCE_ID = 97655;
     public HashMap<UUID, Boolean> vanish_list = new HashMap<>();
 
     @Override
@@ -76,8 +76,6 @@ public final class SimpleCommands extends JavaPlugin {
 
 
         prefix = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("plugin-prefix")));
-
-    //    customSetting = config.getBoolean("custom-setting");
 
         Bukkit.getLogger().info(console_prefix + " Settings reloaded from config");
     }
