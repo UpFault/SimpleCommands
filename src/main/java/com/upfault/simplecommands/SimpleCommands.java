@@ -38,7 +38,7 @@ public final class SimpleCommands extends JavaPlugin {
     }
 
     private void checkForUpdates() {
-        UpdateChecker.init(this, "https://raw.githubusercontent.com/UpFault/simplecommands/master/latest-version.txt")
+        UpdateChecker.init(this, "https://raw.githubusercontent.com/UpFault/SimpleCommands/master/latest-version.txt")
                 .setDownloadLink(SPIGOT_RESOURCE_ID)
                 .setDonationLink("https://paypal.me/tvred")
                 .setChangelogLink(SPIGOT_RESOURCE_ID)
@@ -53,7 +53,7 @@ public final class SimpleCommands extends JavaPlugin {
         Objects.requireNonNull(getCommand("fly")).setExecutor(new fly());
         Objects.requireNonNull(getCommand("feed")).setExecutor(new feed());
         Objects.requireNonNull(getCommand("heal")).setExecutor(new heal());
-        Objects.requireNonNull(getCommand("hcmd")).setExecutor(new reload());
+        Objects.requireNonNull(getCommand("scmd")).setExecutor(new reload());
     }
 
     private void registerEvents() {
@@ -73,7 +73,7 @@ public final class SimpleCommands extends JavaPlugin {
 
     //    customSetting = config.getBoolean("custom-setting");
 
-        Bukkit.getLogger().info(console_prefix + "Settings reloaded from config");
+        Bukkit.getLogger().info(console_prefix + " Settings reloaded from config");
     }
 
     public void loadLangFile() {

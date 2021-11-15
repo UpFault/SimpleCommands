@@ -3,16 +3,11 @@ package com.upfault.simplecommands.utils;
 import com.google.common.io.ByteStreams;
 import com.upfault.simplecommands.SimpleCommands;
 import multiversion.Sound;
-import multiversion.Version;
 import multiversion.XMaterial;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.*;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
 import java.io.File;
@@ -36,10 +31,8 @@ public final class Utilities {
             XMaterial.MAGENTA_SHULKER_BOX.parseMaterial(), XMaterial.ORANGE_SHULKER_BOX.parseMaterial(), XMaterial.PINK_SHULKER_BOX.parseMaterial(), XMaterial.PURPLE_SHULKER_BOX.parseMaterial(),
             XMaterial.RED_SHULKER_BOX.parseMaterial(), XMaterial.WHITE_SHULKER_BOX.parseMaterial(), XMaterial.YELLOW_SHULKER_BOX.parseMaterial());
 
-    private static Map<Player, Long> mostRecentSelect = new HashMap<>();
-
     // load file from JAR with comments
-    public static File loadResource(Plugin plugin, String resource) {
+    public static void loadResource(Plugin plugin, String resource) {
         File folder = plugin.getDataFolder();
         if (!folder.exists())
             folder.mkdir();
@@ -55,53 +48,6 @@ public final class Utilities {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return resourceFile;
-    }
-
-    // convert a location to formatted string (world,x,y,z)
-    public static String toLocString(Location location) {
-        if (location == null) return "";
-        return location.getWorld().getName() + "," + (int) location.getX() + "," + (int) location.getY() + "," + (int) location.getZ();
-    }
-
-    // renames item
-    public static ItemStack nameItem(ItemStack item, String name) {
-        ItemMeta meta = item.getItemMeta();
-        meta.setDisplayName(name);
-        item.setItemMeta(meta);
-        return item;
-    }
-
-    // creates item that is renamed given material and name
-    public static ItemStack nameItem(Material item, String name) {
-        return nameItem(new ItemStack(item), name);
-    }
-
-    // set the lore of an item
-    public static ItemStack loreItem(ItemStack item, List<String> lore) {
-        ItemMeta meta = item.getItemMeta();
-
-        meta.setLore(lore);
-        item.setItemMeta(meta);
-        return item;
-    }
-
-    // makes visible string invisible to player
-    public static String convertToInvisibleString(String s) {
-        if (Version.getVersion().isBiggerThan(Version.v1_15))
-            return s; // HOTFIX to prevent invisible text being garbled by 1.16 changes
-        StringBuilder hidden = new StringBuilder();
-        for (char c : s.toCharArray()) hidden.append(ChatColor.COLOR_CHAR + "").append(c);
-        return hidden.toString();
-    }
-
-    // make invisible string visible to player
-    public static String convertToVisibleString(String s) {
-        if (Version.getVersion().isBiggerThan(Version.v1_15))
-            return s; // HOTFIX to prevent invisible text being garbled by 1.16 changes
-        String c = "";
-        c = c + ChatColor.COLOR_CHAR;
-        return s.replaceAll(c, "");
     }
 
     // warns player of something in plugin
@@ -126,11 +72,6 @@ public final class Utilities {
 
     public static void informPlayer(CommandSender sender, String message) {
         informPlayer(sender, Collections.singletonList(message));
-    }
-
-    // return the block the player is looking at, ignoring transparent blocks
-    public static Block getBlockLookingAt(Player player) {
-        return player.getTargetBlock(TRANSPARENT, 120);
     }
 
     // play sound at player (version independent)

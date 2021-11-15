@@ -23,11 +23,7 @@ public class reload implements CommandExecutor {
         }
 
         if (args[0].equalsIgnoreCase("reload")) {
-            SimpleCommands.getInstance().reloadConfig();
-            SimpleCommands.getInstance().loadConfiguration();
-            SimpleCommands.getInstance().loadLangFile();
-
-            Utilities.informPlayer(sender, "configuration, values, and language settings reloaded");
+            SimpleCommands.reload();
         }
         return true;
     }
