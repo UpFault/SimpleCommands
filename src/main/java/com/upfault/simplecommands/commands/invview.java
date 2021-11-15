@@ -9,15 +9,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.Random;
-
-public class heal implements CommandExecutor {
+public class invview implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         //check if enabled
-        if (SimpleCommands.getInstance().getConfig().get("heal-command").equals(false)) {
+        if (SimpleCommands.getInstance().getConfig().get("invview-command").equals(false)) {
             Utilities.warnPlayer(sender, SimpleCommands.getPhrase("command-disabled"));
             return true;
         }
@@ -28,13 +26,12 @@ public class heal implements CommandExecutor {
             return true;
         }
 
-        String [] arr = {"§aYou bandaged your arm!", "§aYou stuck yourself with morphine!", "§aYou rested and feel better!", "§aYou used a MedKit and feel better!"};
-        Random random = new Random();
-
-        int select = random.nextInt(arr.length);
 
         Player player = (Player) sender;
-        if (command.getName().equalsIgnoreCase("heal")) {
+        if (command.getName().equalsIgnoreCase("inv")) {
+
+            if(args.length > 1) { Utilities.warnPlayer(sender, SimpleCommands.getPhrase("formatting-error-message")); return true; }
+
             if(args.length == 1) {
                 String playerString = args[0];
                 Player player1 = Bukkit.getPlayer(playerString);
@@ -42,18 +39,17 @@ public class heal implements CommandExecutor {
                     Utilities.warnPlayer(sender, SimpleCommands.getPhrase("no-player"));
                     return true;
                 } else {
-                    player1.setHealth(20f);
-                    player1.sendMessage(SimpleCommands.prefix + arr[select]);
-                    player1.playSound(player1.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1f, 1f);
+                    player.openInventory(player1.getInventory());
+                    player.playSound(player.getLocation(), Sound.BLOCK_CHEST_OPEN, 1f, 1f);
+                    player.sendMessage(SimpleCommands.prefix + "Opened " + player1.getDisplayName() + "'s inventory!" );
                     return true;
                 }
+            } else {
+                player.openInventory(player.getInventory());
+                player.playSound(player.getLocation(), Sound.BLOCK_ENDER_CHEST_OPEN, 1f, 1f);
+                player.sendMessage(SimpleCommands.prefix + "Opened your inventory!" );
             }
 
-            if(args.length > 1) { Utilities.warnPlayer(sender, SimpleCommands.getPhrase("formatting-error-message")); return true; }
-
-            player.setHealth(20f);
-            player.sendMessage(SimpleCommands.prefix + arr[select]);
-            player.playSound(player.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1f, 1f);
         }
         return true;
     }

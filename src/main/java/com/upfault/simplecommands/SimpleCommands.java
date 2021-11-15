@@ -53,13 +53,15 @@ public final class SimpleCommands extends JavaPlugin {
         Objects.requireNonNull(getCommand("fly")).setExecutor(new fly());
         Objects.requireNonNull(getCommand("feed")).setExecutor(new feed());
         Objects.requireNonNull(getCommand("heal")).setExecutor(new heal());
-        Objects.requireNonNull(getCommand("scmd")).setExecutor(new reload());
+        Objects.requireNonNull(getCommand("scmd")).setExecutor(new scmd());
         Objects.requireNonNull(getCommand("gms")).setExecutor(new gamemodeSwitcher());
         Objects.requireNonNull(getCommand("gmc")).setExecutor(new gamemodeSwitcher());
         Objects.requireNonNull(getCommand("gmsp")).setExecutor(new gamemodeSwitcher());
         Objects.requireNonNull(getCommand("gma")).setExecutor(new gamemodeSwitcher());
         Objects.requireNonNull(getCommand("gmr")).setExecutor(new gamemodeSwitcher());
         Objects.requireNonNull(getCommand("vanish")).setExecutor(new vanish());
+        Objects.requireNonNull(getCommand("inv")).setExecutor(new invview());
+        Objects.requireNonNull(getCommand("ec")).setExecutor(new ecview());
     }
 
     private void registerEvents() {

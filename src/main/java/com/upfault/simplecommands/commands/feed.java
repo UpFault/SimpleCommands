@@ -45,7 +45,7 @@ public class feed implements CommandExecutor {
                 } else {
                     player1.setFoodLevel(20);
                     player1.setSaturation(20);
-                    player1.sendMessage(arr[select]);
+                    player1.sendMessage(SimpleCommands.prefix + arr[select]);
                     player1.playSound(player1.getLocation(), Sound.ENTITY_PLAYER_BURP, 1f, 1f);
                     return true;
                 }
@@ -55,7 +55,7 @@ public class feed implements CommandExecutor {
 
                 player.setFoodLevel(20);
                 player.setSaturation(20);
-                player.sendMessage(arr[select]);
+                player.sendMessage(SimpleCommands.prefix + arr[select]);
                 player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_BURP, 1f, 1f);
         }
         return true;

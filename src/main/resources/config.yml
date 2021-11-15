@@ -10,3 +10,6 @@ feed-command: true
 heal-command: true
 gamemode-command: true
 vanish-command: true
+invview-command: true
+ecview-command: true
+help-command: true
