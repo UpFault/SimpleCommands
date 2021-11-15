@@ -9,12 +9,28 @@ commands:
   fly:
     description: Fly
   feed:
-    description: Feed
+    description: Feeds people
   heal:
-    description: Heal
+    description: Heals people
   scmd:
+    description: base command for SimpleCommands
     aliases:
       - simplecommands
+  gms:
+    description: set user to survival mode
+  gmc:
+    description: set user to creative mode
+  gmsp:
+    description: set user to spectator mode
+  gma:
+    description: set user to adventure mode
+  gmr:
+    description: sets user to random gamemode
+  vanish:
+    description: hide the player from all of the server
+    aliases:
+      - v
+      - hide
 permissions:
   simplecommands.op:
     default: op

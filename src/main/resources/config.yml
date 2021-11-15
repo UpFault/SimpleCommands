@@ -8,3 +8,5 @@ plugin-prefix: "&7[&bSCMD&7] &7"
 fly-command: true
 feed-command: true
 heal-command: true
+gamemode-command: true
+vanish-command: true

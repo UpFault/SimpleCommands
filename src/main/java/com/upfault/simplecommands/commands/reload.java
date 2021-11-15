@@ -5,6 +5,7 @@ import com.upfault.simplecommands.utils.Utilities;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 public class reload implements CommandExecutor {
 
@@ -22,8 +23,10 @@ public class reload implements CommandExecutor {
             return true;
         }
 
+        Player player = (Player) sender;
+
         if (args[0].equalsIgnoreCase("reload")) {
-            SimpleCommands.reload();
+            SimpleCommands.reload(player);
         }
         return true;
     }

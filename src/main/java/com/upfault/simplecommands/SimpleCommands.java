@@ -1,9 +1,6 @@
 package com.upfault.simplecommands;
 
-import com.upfault.simplecommands.commands.feed;
-import com.upfault.simplecommands.commands.fly;
-import com.upfault.simplecommands.commands.heal;
-import com.upfault.simplecommands.commands.reload;
+import com.upfault.simplecommands.commands.*;
 import com.upfault.simplecommands.events.JoinEvent;
 import com.upfault.simplecommands.updatechecker.UpdateChecker;
 import com.upfault.simplecommands.updatechecker.UserAgentBuilder;
@@ -12,12 +9,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.UUID;
 
 public final class SimpleCommands extends JavaPlugin {
 
@@ -26,6 +25,7 @@ public final class SimpleCommands extends JavaPlugin {
     public static String prefix = "&7[&bSCMD&7] &7";
     public static String console_prefix = "[SCMD]";
     private static final int SPIGOT_RESOURCE_ID = 12345;
+    public HashMap<UUID, Boolean> vanish_list = new HashMap<>();
 
     @Override
     public void onEnable() {
@@ -54,6 +54,12 @@ public final class SimpleCommands extends JavaPlugin {
         Objects.requireNonNull(getCommand("feed")).setExecutor(new feed());
         Objects.requireNonNull(getCommand("heal")).setExecutor(new heal());
         Objects.requireNonNull(getCommand("scmd")).setExecutor(new reload());
+        Objects.requireNonNull(getCommand("gms")).setExecutor(new gamemodeSwitcher());
+        Objects.requireNonNull(getCommand("gmc")).setExecutor(new gamemodeSwitcher());
+        Objects.requireNonNull(getCommand("gmsp")).setExecutor(new gamemodeSwitcher());
+        Objects.requireNonNull(getCommand("gma")).setExecutor(new gamemodeSwitcher());
+        Objects.requireNonNull(getCommand("gmr")).setExecutor(new gamemodeSwitcher());
+        Objects.requireNonNull(getCommand("vanish")).setExecutor(new vanish());
     }
 
     private void registerEvents() {
@@ -90,10 +96,11 @@ public final class SimpleCommands extends JavaPlugin {
         }
     }
 
-    public static void reload() {
+    public static void reload(Player player) {
         getInstance().reloadConfig();
         getInstance().loadConfiguration();
         getInstance().loadLangFile();
+        Utilities.informPlayer(player, "configuration, values, and language settings reloaded");
         Bukkit.getLogger().info("configuration, values, and language settings reloaded");
     }
 

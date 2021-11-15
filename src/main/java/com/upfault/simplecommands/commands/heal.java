@@ -2,6 +2,7 @@ package com.upfault.simplecommands.commands;
 
 import com.upfault.simplecommands.SimpleCommands;
 import com.upfault.simplecommands.utils.Utilities;
+import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,12 +31,27 @@ public class heal implements CommandExecutor {
         String [] arr = {"§aYou bandaged your arm!", "§aYou stuck yourself with morphine!", "§aYou rested and feel better!", "§aYou used a MedKit and feel better!"};
         Random random = new Random();
 
-        // randomly selects an index from the arr
         int select = random.nextInt(arr.length);
 
         Player player = (Player) sender;
         if (command.getName().equalsIgnoreCase("heal")) {
-                player.setHealth(20f);
+            if(args.length == 1) {
+                String playerString = args[0];
+                Player player1 = Bukkit.getPlayer(playerString);
+                if (!(player1 != null && player1.isOnline())) {
+                    Utilities.warnPlayer(sender, SimpleCommands.getPhrase("no-player"));
+                    return true;
+                } else {
+                    player1.setHealth(20f);
+                    player1.sendMessage(arr[select]);
+                    player1.playSound(player1.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1f, 1f);
+                    return true;
+                }
+            }
+
+            if(args.length > 1) { Utilities.warnPlayer(sender, SimpleCommands.getPhrase("formatting-error-message")); return true; }
+
+            player.setHealth(20f);
             player.sendMessage(arr[select]);
             player.playSound(player.getLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1f, 1f);
         }
