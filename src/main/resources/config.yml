@@ -1,0 +1,10 @@
+# FILE: config.yml
+# These are the settings for SimpleCommands. Change whatever you like but do not remove any
+# non-comment lines, as this will result in errors.
+
+plugin-prefix: "&7[&bSCMD&7] &7"
+
+# true = command enabled | false = command disabled
+fly-command: true
+feed-command: true
+heal-command: true

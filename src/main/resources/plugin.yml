@@ -1,0 +1,25 @@
+name: SimpleCommands
+version: '${project.version}'
+main: com.upfault.simplecommands.SimpleCommands
+api-version: 1.16
+prefix: SCMD
+authors: [ UpFault ]
+description: A plugin with tons of helpful commands for servers!
+commands:
+  fly:
+    description: Fly
+  feed:
+    description: Feed
+  heal:
+    description: Heal
+  scmd:
+    aliases:
+      - simplecommands
+permissions:
+  simplecommands.op:
+    default: op
+    description: operator permission for plugin
+  simplecommands.user:
+    default: true
+    description: user permission for plugin
+

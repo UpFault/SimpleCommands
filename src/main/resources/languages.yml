@@ -1,0 +1,10 @@
+# FILE: languages.yml
+# These are the settings for SimpleCommands. Change whatever you like but do not remove any
+# non-comment lines, as this will result in errors.
+
+no-permissions-message: You do not have proper permissions!
+
+command-disabled: This command is disabled!
+not-a-command-message: That is not a command!
+formatting-error-message: Formatting error, check your command syntax!
+no-console-message: You can only execute this command in-game!
